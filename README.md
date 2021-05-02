@@ -17,3 +17,9 @@ The Log file generated will be analysed for frequency count and most frequent ke
 speed(), which will be a user defined function will be used for calculating typing speed.
 
 
+This is the result of the project:
+
+![image](https://user-images.githubusercontent.com/50805925/116808620-734f1880-ab57-11eb-90b4-1380347e1903.png)
+
+![image](https://user-images.githubusercontent.com/50805925/116808636-882bac00-ab57-11eb-98da-8bcfdc370fdc.png)
+
